@@ -4,6 +4,10 @@ php:
     - 7.3
     - 7.4
 
+env:
+  global:
+  - CODECOV_TOKEN="c01ebc0c-545f-480a-804b-65d066762f95"
+
 script:
     - vendor/bin/phpunit --coverage-clover coverage.xml
 
