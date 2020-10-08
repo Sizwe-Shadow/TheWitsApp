@@ -10,10 +10,8 @@
 		<testsuite name="unit">
 			<file>./tests/HelloWorldTest.php</file>
 		</testsuite>
+
 		
-		<logging>
-       			<log type="coverage-clover" target="clover.xml"/>
-   		</logging>
 	</testsuites>
 
 </phpunit>
