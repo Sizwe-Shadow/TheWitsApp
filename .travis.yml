@@ -12,5 +12,8 @@ install:
 script:
   - "vendor/bin/phpunit"
 
+after_fail:
+  -bash <(curl -s https://codecov.io/bash)
+
 after_success:
-  -codecov
+  -bash <(curl -s https://codecov.io/bash)
