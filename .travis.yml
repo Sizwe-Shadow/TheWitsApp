@@ -1,19 +1,70 @@
+[1]
+language:
+  - php
+php:
+  - 7.3
+  - 7.4
+
+os: linux
+
+install:
+  - composer install
+
+script:
+  - php vendor/bin/phpunit
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+
+[2]
 language: php
 
 php:
-    - 7.3
-    - 7.4
-    
-env:
-  global:
-  - CODECOV_TOKEN="c01ebc0c-545f-480a-804b-65d066762f95"
+  - 5.5
+  - 5.6
+  - 7
+
+before_install:
+  - php /home/travis/.phpenv/versions/5.4.25/bin/composer.phar self-update
 
 before_script:
-    - travis_retry composer self-update
-    - travis_retry composer install --no-interaction --prefer-source --dev
+  - composer install
+
+script: phpunit --configuration phpunit.xml --coverage-text
+
+[3]
+
+language: php
+
+php:
+  - 5.5
+  - 5.6
+  - 7
+
+before_install:
+  - php /home/travis/.phpenv/versions/5.4.25/bin/composer.phar self-update
+
+before_script:
+  - composer install
+
+script: phpunit --configuration phpunit.xml --coverage-text
+
+[4]
+
+language:
+  - php
+php:
+  - 7.3
+  - 7.4
+
+os: linux
+
+install:
+  - composer install
 
 script:
-    - vendor/bin/phpunit --coverage-clover coverage.xml
+  - "vendor/bin/phpunit"
 
 after_success:
-    - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash)
