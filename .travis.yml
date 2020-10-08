@@ -4,10 +4,12 @@ php:
     - 7.3
     - 7.4
 
+before_script:
+    - travis_retry composer self-update
+    - travis_retry composer install --no-interaction --prefer-source --dev
 
 script:
     - vendor/bin/phpunit --coverage-clover coverage.xml
 
 after_success:
-    - export CODECOV_TOKEN="c01ebc0c-545f-480a-804b-65d066762f95"
     - bash <(curl -s https://codecov.io/bash)
