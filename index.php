@@ -15,7 +15,7 @@
         <a href="Login.php">
             <button class="login-button" type="login-button">Login</button>
         </a>
-        <a href="register.html">
+        <a href="register.php">
             <button class="signup-button"type="signup-button">Sign Up</button>
         </a>
 

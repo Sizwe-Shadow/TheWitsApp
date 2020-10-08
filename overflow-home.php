@@ -16,16 +16,16 @@ session_start();
         <div class="container">
             <div class="column">
 
-                <a href="php/fetchQuestions.php" onclick="<?php $_SESSION['name'] = 'Science'?>">
+                <a href="php/fetchQuestions.php?name=Science" >
                     <div class="card">
                         <div class="card-image science">
                             <div class="banner"></div>
                             <h1>Science</h1>
                         </div>
                     </div>
-
                 </a>
-                <a href="php/fetchQuestions.php" onclick="<?php $_SESSION['name'] = 'Math'?>">
+
+                <a href="php/fetchQuestions.php?name=Math">
                     <div class="card">
                         <div class="card-image Math">
                             <div class="banner"></div>
@@ -33,7 +33,7 @@ session_start();
                         </div>
                     </div>
                 </a>
-                <a href="php/fetchQuestions.php" onclick="<?php $_SESSION['name'] = 'Arts'?>">
+                <a href="php/fetchQuestions.php?name=Arts">
                     <div class="card">
                         <div class="card-image Arts">
                             <div class="banner"></div>
@@ -41,7 +41,7 @@ session_start();
                         </div>
                     </div>
                 </a>
-                <a href="php/fetchQuestions.php" onclick="<?php $_SESSION['name'] = 'Accounting'?>">
+                <a href="php/fetchQuestions.php?name=Accounting">
                     <div class="card">
                         <div class="card-image Accounting">
                             <div class="banner"></div>
@@ -49,28 +49,28 @@ session_start();
                         </div>
                     </div>
                 </a>
-<!--                <a href="php/fetchQuestions.php" onclick="--><?php //$_SESSION['name'] = 'Biology'?><!--">-->
+                <a href="php/fetchQuestions.php?name=Biology">
                     <div class="card">
                         <div class="card-image Biology">
                             <div class="banner"></div>
                             <h1>Biology</h1>
                         </div>
                     </div>
-<!--                </a>-->
-<!--                <a href="php/fetchQuestions.php" onclick="--><?php //$_SESSION['name'] = 'LawPolitics'?><!--">-->
+                </a>
+                <a href="php/fetchQuestions.php?name=Politics">
                     <div class="card">
                         <div class="card-image Politics">
                             <div class="banner"></div>
                             <h1>Politics and Law</h1>
                         </div>
                     </div>
-<!--                </a>-->
-
+                </a>
             </div>
 
         </div>
     </div>
 
 </body>
+
 
 </html>
