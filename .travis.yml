@@ -1,14 +1,16 @@
-language: php
-
+language:
+  - php
 php:
-  - 5.5
-  - 5.6
-  - 7
+  - 7.3
+  - 7.4
 
-before_install:
-  - php /home/travis/.phpenv/versions/5.4.25/bin/composer.phar self-update
+os: linux
 
-before_script:
+install:
   - composer install
 
-script: phpunit --configuration phpunit.xml --coverage-text
+script:
+  - "vendor/bin/phpunit"
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
