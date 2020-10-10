@@ -11,14 +11,14 @@ if ($link === false) {
 else {
 // Attempt insert query execution
 
-    $question = $_POST['question'];
-    $field = $_POST['field'];
+    $response = $_POST['question'];
+    $questionID = $_POST['questionID'];
     $student_number = $_POST['stud_num'];
 
-    $sql = "INSERT INTO `questions` (`QuestionID`, `Message`, `Date`, `Votes`, `Username`, `UserID`, `Category`) VALUES (NULL,'$question', CURRENT_DATE, '0', '$student_number', '$student_number', '$field')";
+    $sql = "INSERT INTO `responses` (`RESP_MSG_ID`, `RESP_MSG`, `RESP_DATE`, `RESP_VOTES`, `QuestionID`, `UserID`) VALUES (NULL,'$response', CURRENT_DATE, '0', '$questionID', '$student_number')";
     if (mysqli_query($link, $sql)) {
         echo "Records inserted successfully.";
-        header("Location:fetchQuestions.php?name=$field");
+        header("Location:dispComments.php?questionID=$questionID&userID=$student_number");
         exit();
     } else {
         echo "Enter Student number in the student number field!!";

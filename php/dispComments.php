@@ -1,5 +1,5 @@
 <?php
-//echo "hundred!";]
+
 session_start();
 
 $servername = "localhost";
@@ -10,10 +10,10 @@ $database = "users";
 
 
 $link = mysqli_connect($servername, $username, $password, $database);
+$question_id = $_GET["questionID"];
+$user_id = $_GET["userID"];
 
-$name_category = $_GET["name"];
-
-$query = mysqli_query($link, "select * from questions where Category = '$name_category'");
+$query = mysqli_query($link, "select * from responses where questionID = '$question_id' and userID = $user_id");
 
 $result = array();
 
@@ -32,24 +32,26 @@ if (mysqli_num_rows($query)) {
     $decode = json_decode($jsonArray);
 
 
-for($i = 0; $i < sizeof($decode); $i++){
+    for ($i = 0; $i < sizeof($decode); $i++) {
 
-    $jsonObject = $decode[$i];
+        $jsonObject = $decode[$i];
 
 //try starting by dding everything to the array and then echo the div
-    $userID = "UserID";
-    $questionKey = "QuestionID";
-    $messageKey = "Message";
+        $userID = "UserID";
+        $questionKey = "RESP_MSG_ID";
+        $messageKey = "RESP_MSG";
 
-    $firstName = $jsonObject->$userID;
-    $question_id = $jsonObject->$questionKey;
-    $message = $jsonObject->$messageKey;
+        $firstName = $jsonObject->$userID;
+        $question = $jsonObject->$questionKey;
+        $message = $jsonObject->$messageKey;
 
-    echo "
-            <div class='card' style='margin-bottom: 10px;margin-top: 0px !important;width:100%;height:150px;position: center;background-color: #1eccf8; border-radius: 15px'>
-                <h3 style=' display: inline; '><em>Student Number : $firstName</em></h3>
-                <h1>Message: $message</h1>
-                <a href='dispComments.php?questionID=$question_id&userID=$firstName' class='material-icons list' style='font-size:28px; border: none;background-color:#1eccf8'>list</a>
+        echo "
+        <!--   <a href='tobadialogbox.html' class='material-icons floating-btn'>add</a> -->
+    <!--        <button onclick='document.getElementById('modal')' class='material-icons floating-btn' id='click'>add</button>-->
+
+            <div class='card' style='margin-bottom: 0px !important;margin-top: 0px !important;width:100%;height:150px;position: center;background-color: #1eccf8; border-radius: 15px'>
+                <h3><em>Student Number : $firstName</em></h3>
+                <h1>Message: $message</h1>           
             </div>
             
             <div id='myModal' class='modal'>
@@ -57,15 +59,14 @@ for($i = 0; $i < sizeof($decode); $i++){
                 <div  class='modal-content'>
                     <div class='modal-header'>
                         <span class='close'>&times;</span>
-                        <h2>Question</h2>
+                        <h2>Respond:</h2>
                     </div>
                     <div class='modal-body'>
-                        <form action='insertQuestion.php' method='post'>
+                        <form action='insertResponse.php' method='post'>
                             <textarea id='question' class='userInput' name='question'></textarea><br><br>
                             <input type='submit' value='Submit'>
-                            <input type='text' id='field' name='field' value='$name_category'>
-                            <p style='padding-left: 350px;  font-size:20px;  display: inline'>Enter your student number:</p>
-                            <input type='text' id='stud_num' name='stud_num' value='$firstName'>
+                            <input type='hidden' id='questionID' name='questionID' value='$question_id'>
+                            <input type='hidden' id='stud_num' name='stud_num' value='$firstName'>
                         </form>
                     </div>
                 </div>
@@ -76,32 +77,28 @@ for($i = 0; $i < sizeof($decode); $i++){
 
 }
 else {
-    echo " <div style='width:100%;height:150px;position: center;padding:10px; background-color: white; font-size: 10px'>
-                <h1>There are no Questions regarding this field!</h1> 
-                 <div id='myModal' class='modal'>
-                <!-- Modal content -->
-                <div  class='modal-content'>
-                    <div class='modal-header'>
-                        <span class='close'>&times;</span>
-                        <h2>Question</h2>
-                    </div>
-                    <div class='modal-body'>
-                        <form action='insertQuestion.php' method='post'>
-                            <textarea id='question' class='userInput' name='question'></textarea><br><br>
-                            <input type='submit' value='Submit'>
-                            <input type='text' id='field' name='field' value='$name_category'>
-                            Enter your student number:
-                            <input type='text' id='stud_num' name='stud_num'>
-                        </form>
+    echo "<div style='width:100%;height:150px;position: center;padding:10px; background-color: white; font-size: 10px'>
+                <h1>There are no Responses to this question!</h1> 
+                <div id='myModal' class='modal'>
+                    <!-- Modal content -->
+                    <div  class='modal-content'>
+                        <div class='modal-header'>
+                            <span class='close'>&times;</span>
+                            <h2>Respond:</h2>
+                        </div>
+                        <div class='modal-body'>
+                            <form action='insertResponse.php' method='post'>
+                                <textarea id='question' class='userInput' name='question'></textarea><br><br>
+                                <input type='submit' value='Submit'>
+                                <input type='hidden' id='questionID' name='questionID' value='$question_id'>
+                                <input type='hidden' id='stud_num' name='stud_num' value='$user_id'>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>" ;
 }
-
-//$_SESSION['name'] = "";
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -113,7 +110,6 @@ else {
     <script src="https://kit.fontawesome.com/yourcode.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../css/fetchQuestions.css">
-    <!--<link rel="stylesheet" href="../css/overflow.css">-->
 
 </head>
 <body>
@@ -121,8 +117,9 @@ else {
 <div class='container'>
     <div style='padding-bottom: 0px' class='app'>
         <!-- Trigger/Open The Modal -->
-        <button id='myBtn' class='material-icons floating-btn' >add</button>
+        <button id='myBtn' class='material-icons floating-btn' >create</button>
             <script>
+
                 // Get the modal
                 let modal = document.getElementById("myModal");
 
@@ -154,6 +151,3 @@ else {
 </div>
 </body>
 </html>
-
-
-
