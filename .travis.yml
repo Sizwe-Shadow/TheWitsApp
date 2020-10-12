@@ -8,9 +8,6 @@ env:
       -SH=bash
 os: linux
 
-addons:
-  mariadb: '10.4.13'
-
 install:
           - composer install
 
