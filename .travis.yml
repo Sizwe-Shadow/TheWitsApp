@@ -3,7 +3,9 @@ language:
 php:
       - 7.3
       - 7.4
-
+env:
+      -CODECOV_TOKEN = c01ebc0c-545f-480a-804b-65d066762f95
+      -SH=bash
 os: linux
 
 install:
