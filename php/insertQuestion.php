@@ -21,7 +21,8 @@ else {
         header("Location:fetchQuestions.php?name=$field");
         exit();
     } else {
-        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+        echo "Enter Student number in the student number field!!";
+//        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
     }
 
 // Close connection

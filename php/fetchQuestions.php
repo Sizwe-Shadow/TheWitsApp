@@ -42,18 +42,16 @@ for($i = 0; $i < sizeof($decode); $i++){
     $messageKey = "Message";
 
     $firstName = $jsonObject->$userID;
-    $question = $jsonObject->$questionKey;
+    $question_id = $jsonObject->$questionKey;
     $message = $jsonObject->$messageKey;
 
     echo "
-        <!--   <a href='tobadialogbox.html' class='material-icons floating-btn'>add</a> -->
-    <!--        <button onclick='document.getElementById('modal')' class='material-icons floating-btn' id='click'>add</button>-->
-
-            <div class='card' style='margin-bottom: 0px !important;margin-top: 0px !important;width:100%;height:150px;position: center;background-color: #1eccf8; border-radius: 15px'>
-                <h3><em>Student Number : $firstName</em></h3>
+            <div class='card' style='margin-bottom: 10px;margin-top: 0px !important;width:100%;height:150px;position: center;background-color: #1eccf8; border-radius: 15px'>
+                <h3 style=' display: inline; '><em>Student Number : $firstName</em></h3>
                 <h1>Message: $message</h1>
-                <button class='material-icons list' style='font-size:28px; border: none;background-color:#1eccf8'>list</button>
+                <a href='dispComments.php?questionID=$question_id&userID=$firstName' class='material-icons list' style='font-size:28px; border: none;background-color:#1eccf8'>list</a>
             </div>
+            
             <div id='myModal' class='modal'>
                 <!-- Modal content -->
                 <div  class='modal-content'>
@@ -78,9 +76,9 @@ for($i = 0; $i < sizeof($decode); $i++){
 
 }
 else {
-    echo " <div style='width:100%;height:150px;position: center;padding:10px; background-color: white'>
+    echo " <div style='width:100%;height:150px;position: center;padding:10px; background-color: white; font-size: 10px'>
                 <h1>There are no Questions regarding this field!</h1> 
-                            <div id='myModal' class='modal'>
+                 <div id='myModal' class='modal'>
                 <!-- Modal content -->
                 <div  class='modal-content'>
                     <div class='modal-header'>
@@ -92,7 +90,7 @@ else {
                             <textarea id='question' class='userInput' name='question'></textarea><br><br>
                             <input type='submit' value='Submit'>
                             <input type='text' id='field' name='field' value='$name_category'>
-                            <input type='text' id='enter_stud_num' placeholder='Enter your student number:'>
+                            Enter your student number:
                             <input type='text' id='stud_num' name='stud_num'>
                         </form>
                     </div>

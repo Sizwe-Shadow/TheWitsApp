@@ -1,19 +1,17 @@
-language: php
-
+language:
+    - php
 php:
-    - 7.3
-    - 7.4
-    
+      - 7.3
+      - 7.4
 env:
-  global:
-  - CODECOV_TOKEN="c01ebc0c-545f-480a-804b-65d066762f95"
+      -CODECOV_TOKEN = c01ebc0c-545f-480a-804b-65d066762f95
+      -SH=bash
+os: linux
 
-before_script:
-    - travis_retry composer self-update
-    - travis_retry composer install --no-interaction --prefer-source --dev
+install:
+          - composer install
 
 script:
-    - vendor/bin/phpunit --coverage-clover coverage.xml
-
+          - php vendor/bin/phpunit
 after_success:
-    - bash <(curl -s https://codecov.io/bash)
+          - bash <(curl -s https://codecov.io/bash)
