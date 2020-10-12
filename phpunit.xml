@@ -8,7 +8,7 @@
 
 	<testsuites>
 		<testsuite name="unit">
-			<file>./tests/HelloWorldTest.php</file>
+			<directory>tests</directory>
 		</testsuite>
 
 		
