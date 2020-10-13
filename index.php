@@ -52,23 +52,23 @@
                     <h2 class="title">Sign up</h2>
                     <div class="input-field">
                         <i class="fas fa-id-card"></i>
-                        <input type="text" placeholder="Name">
+                        <input type="text" id="name" placeholder="Name">
                     </div>
                     <div class="input-field">
                         <i class="fas fa-id-card"></i>
-                        <input type="text" placeholder="Surname">
+                        <input type="text" id="surname" placeholder="Surname">
                     </div>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Student Number">
+                        <input type="text" id="student_number" placeholder="Student Number">
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password">
+                        <input type="password" id="password" placeholder="Password">
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Re-enter Password">
+                        <input type="password" id="re-password" placeholder="Re-enter Password">
                     </div>
 
                     <input type="submit" value="Sign up" class="btn solid">
