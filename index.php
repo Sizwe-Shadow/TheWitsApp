@@ -16,16 +16,16 @@
         <div class="forms-container">
             <div class="signin-signup">
 
-                <form action="home.html" class="sign-in-form">
+                <form action="php/login_auth.php" method="post" class="sign-in-form">
 
                     <h2 class="title">Sign in</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username">
+                        <input type="text" id="student_no" class="StudentNumber" name="Student_Number" placeholder="Student Number" required="">
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password">
+                        <input type="password" id="password" class="password" name="Password" placeholder="Student Password" required="">
                     </div>
 
                     <input type="submit" value="Login" class="btn solid">

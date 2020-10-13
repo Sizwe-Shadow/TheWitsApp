@@ -392,9 +392,9 @@ form.sign-in-form {
     bottom: 72%;
     left: 50%;
   }
-  
+
   .container.sign-up-mode:before{
-	  bottom: 20%;
-	  left:50%
+    bottom: 20%;
+    left:50%
   }
 }
