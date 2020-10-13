@@ -1,0 +1,17 @@
+language:
+    - php
+php:
+      - 7.3
+      - 7.4
+env:
+      -CODECOV_TOKEN = c01ebc0c-545f-480a-804b-65d066762f95
+      -SH=bash
+os: linux
+
+install:
+          - composer install
+
+script:
+          - php vendor/bin/phpunit --coverage-clover coverage.xml
+after_success:
+          - bash <(curl -s https://codecov.io/bash)
